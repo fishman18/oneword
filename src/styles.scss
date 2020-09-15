@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+
+*{
+  box-sizing: border-box;
+  font-family: "Noto Sans T Chinese Regular","Apple LiGothic Medium", "思源黑体", "Noto Sans CJK", "Source Han Sans", "微軟雅黑體", "微軟正黑體", "華文黑體", "宋体",sans-serif,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+app-root{
+  display: inline-block;
+}
+
+html,body{
+  margin: 0;
+  position: fixed;
+  background-color: #f0e6d7;
+}
+
+body{
+  padding: 20px 0 0 0;
+  
+  height: 100vh;
+}
+ag-grid-angular{
+  .ag-root .ag-header{
+    position: static;
+  }
+
+  .ag-layout-normal .ag-body{
+    height: calc(100% - 40px);
+  }
+}
+.ag-large-textarea textarea{
+  display: inline-block;
+  position: fixed;
+  height: 100px;
+  resize: none;
+  border: 1px solid #ccc;
+  width: calc(100% - 164px);
+  font-size: 14px;
+}
+.ag-theme-fresh{
+  background-color: #f0e6d7;
+ 
+  .ag-body-viewport {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ag-root{
+    border: none;
+    .ag-body{
+      background-color: initial;
+      border-bottom: 1px solid #d8d8d8;
+    }
+  }
+
+  .ag-header{
+    border-bottom: none;
+    background-image:none;
+  }
+
+  .ag-header-cell{
+    background-color: #e0d4c1;
+    padding: 7px 0 7px 12px;
+    border: 1px solid #d7c19f;
+    border-bottom: none;
+    font-size: 14px;
+  }
+
+  .ag-row-drag{
+    height: 30px;
+    cursor: move;
+    background-size: 30px 30px;
+    width: 22px;
+    margin-right: 5px;
+    margin-left: -15px;
+    margin-top: -65px;
+    background-position-y: -5px;
+    //background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAQAAACQ9RH5AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFASURBVFjD7dbRatwwEIXhTyN7oYH2QXpV6Ps/QkMfIc+QlkDXltSLepc2BNa4mDhBczuGX2d0dDypeZ2KV+J2cAd3cAd3cAcfEDys+6z53uo/5/2SEvj27If+NR1ccQd38PsDp1t7dRWYjKomo0jCZLx2t9TNAEmYVVU1K6gGVLPByrTYohimFxDNbNyMXaG4SULyw2kZbBXOPoqluyO4KR5aKMsdZ9Xn1NDcb8zqFWCS7NGgGjEJs6ws3Z0UXwSEO1XGKPy8dncbdSjOPphVk18IoxlnJ3mz5uMuAlV2wiCMi7nCgJOs7unqywGe/jJXvXa3jnqVuZrik8tz+qO0LH7fWjeTq0mK/EKAFPk/AuTYkZmcjap5UTwIk2z3yBw0wdXVSSzO3nnUfa/u4A4+NHjlO35Hiju4gzu4g98e+Dfy6XGjP6R+GgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNS0wM1QyMjoxNToxMi0wNDowMHDjQBgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDUtMDNUMjI6MTU6MTItMDQ6MDABvvikAAAAEXRFWHRqcGVnOmNvbG9yc3BhY2UAMbV8BCUAAAAYdEVYdGpwZWc6c2FtcGxpbmctZmFjdG9yADF4MRaug9sAAAAASUVORK5CYII=');
+    background-image: url('assets/btn_six_point.png');
+  }
+
+  .ag-row{
+    border-right: 1px solid #d8d8d8;
+    background-color: #ffffff;
+    &.contain-error{
+      color: #f00;
+    }
+    height: 100px;
+  }
+  .ag-row-odd {
+    background-color: #f6f6f6;
+  }
+  .ui-grid-row:nth-child(2n) .ui-grid-cell {
+    background-color: #c7c6c6;//color you desire;
+  }
+  .ag.cell:hover{
+    border-color: #62adf8;
+  }
+  .ag-cell{
+    font-size: 14px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 11px;
+    padding-right: 11px;
+    border-top: 1px solid #d8d8d8;
+    border-left: 1px solid #d8d8d8;
+ 
+    
+    input[type= text]{
+      border:none;
+      outline:0;
+      font-size: 14px;
+      padding: 0;
+      word-wrap: break-word;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+      white-space: normal;
+      &::-ms-clear{
+        display: none;
+      }
+      
+    }
+
+
+
+    &[col-id=remove]{
+      padding: 0;
+    }
+
+    &.question_no.readonly{
+      padding-left: 20px;
+    }
+
+    &.ie7{
+      line-height: 30px;
+    }
+
+  }
+
+ 
+  
+
+  .ag-row-odd input{
+    background-color: transparent;
+  }
+
+  
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+}
+
+.button{
+  display: inline-block;
+  user-select: none;
+  width: 130px;
+  background-image: linear-gradient(to bottom, #124d87, #124d87);
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+
+.ag-body-viewport {
+height: 70vh;
+
+}
+.ag-full-width-container{
+ height: 600px;
+
+}

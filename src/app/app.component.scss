@@ -1,0 +1,48 @@
+
+    /*# sourceURL=mc4.grid.scss */
+.file-panel{
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  &.mobile .button{
+    opacity: 0.5;
+  }
+}
+
+input[type=file]{
+  display:none;
+ 
+}
+
+.top-shadow{
+  position: fixed;
+  height: 5px;
+  background-color: #fff;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.115) 0%,rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 );
+}
+
+ag-grid-angular{
+  height: 82vh;
+}
+/*# sourceURL=base.component.scss */
+.grid{
+  width: calc(100vw);
+  
+  display: inline-block;
+  background-color: #f0e6d7;
+}
+
+.red{
+    color: red;
+    
+    text-align: center;
+   
+    margin-top: 10px;
+    font-family: Helvetica,Arial,sans-serif;
+    }

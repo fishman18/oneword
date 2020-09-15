@@ -1,0 +1,102 @@
+/*# sourceURL=modal.component.scss */
+.grey-layer{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.modal{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 180px;
+  width: 300px;
+  margin: calc((100vh - 180px)/2) calc((100vw - 300px)/2);
+  border-radius: 20px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.1) -3px -3px 15px 0, rgba(0, 0, 0, 0.1) 3px 3px 15px 0, rgba(0, 0, 0, 0.1) -3px 3px 15px 0, rgba(0, 0, 0, 0.1) 3px -3px 15px 0;
+
+}
+
+
+.panel{
+  display: flex;
+  width: 100%;
+  height: 52px;
+  background-color: #fff;
+  border-radius: 0 0 20px 20px;
+  align-items: flex-start;
+  justify-content: center;
+  &.confirm{
+    justify-content: center;
+    .confirm__yes__icon, .confirm__no__icon{
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 22px;
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+    }
+    .confirm__yes__icon{
+      background-image: url('/RainbowOne/webapp/2.0/gamefile/edit/questionEditor/assets/icon_alert_tick.svg');
+    }
+    .confirm__no{
+      margin-left: 10px;
+      background-color: #BDBDBD;
+      &:hover{
+        background-color: #9F9F9F;
+      }
+      &__icon{
+        background-image: url('/RainbowOne/webapp/2.0/gamefile/edit/questionEditor/assets/icon_alert_cross.svg');
+      }
+    }
+    a{
+      width: calc((100% - 36px) / 2);
+      span{
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &.alert > a{
+    width: calc(100% - 24px);
+  }
+}
+
+a{
+  color: #fff;
+  background-color: #8CC055;
+  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  line-height: 38px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  &:hover{
+    background-color: #6D9C3A;
+  }
+  span{
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.message{
+  height: 126px;
+  padding: 55px 12px;
+  user-select: none;
+}

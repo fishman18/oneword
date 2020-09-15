@@ -1,0 +1,3 @@
+<rainbow-loading *ngIf="commonService.getLoading().length > 0"></rainbow-loading>
+<modal *ngFor="let mobj of modalService.modalList;" [config]="mobj"></modal>
+<q-only-grid class="grid" ></q-only-grid>

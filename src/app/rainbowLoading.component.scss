@@ -1,0 +1,149 @@
+/*# sourceURL=rainbowLoading.component.scss */
+.layer {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+
+    &.ie{
+      .umbrella-fan{
+        transform-origin: 48% 48%;
+      }
+    }
+
+    .wheel{
+      left: 50vw;
+    }
+
+    .color-container{
+      left: calc(50vw + 5.4px);
+    }
+
+    .center{
+      left: calc(50vw + 9px);
+    }
+
+    .fan-container{
+      left: calc(50vw + 4px);
+    }
+}
+
+.non-center{
+  position: relative;
+  z-index: 9999;
+  height: 80px;
+  width: 80px;
+
+  .wheel, .color-container, .center, .fan-container{
+    left: 0;
+    right: 0;
+  }
+}
+
+.wheel {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 3px 0;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 3px 11px 2px #ccc;
+}
+
+@mixin circle($size) {
+    position: absolute;
+    border-radius: 100%;
+    width: $size;
+    height: $size;
+}
+
+$wheel: 30px;
+$fanWheel: 32px;
+
+.fan {
+    @include circle($fanWheel);
+
+    clip: rect(0, $fanWheel, $fanWheel, #{$fanWheel / 2});
+
+    &__inside {
+        @include circle($fanWheel);
+
+        transform: rotate(72deg);
+        clip: rect(0, #{$fanWheel / 2}, $fanWheel, 0);
+        background-color: #fff;
+    }
+}
+
+
+
+.umbrella-fan {
+    position: relative;
+    display: inline-block;
+}
+
+.umbrella-fan {
+    animation: rotateRingRev 1000ms linear infinite;
+    width: $fanWheel;
+    height: $fanWheel;
+}
+
+@keyframes rotateRing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateRingRev {
+    0% {
+        transform: rotateZ(360deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+.center {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+}
+
+.color-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: $wheel;
+    height: $wheel;
+    background-image: url('/RainbowOne/webapp/2.0/gamefile/edit/questionEditor/assets/icon_loading_color.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    animation: rotateRing 1000ms linear infinite;
+}
+
+.fan-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: $fanWheel;
+    height: $fanWheel;
+}
