@@ -3,7 +3,7 @@
 .file-panel{
   display: inline-block;
   text-align: center;
-  margin-top: 10px;
+ 
   margin-bottom: 20px;
   width: 100%;
   &.mobile .button{
@@ -28,7 +28,7 @@ input[type=file]{
 }
 
 ag-grid-angular{
-  height: 82vh;
+  height: 83.5vh;
 }
 /*# sourceURL=base.component.scss */
 .grid{
@@ -43,6 +43,7 @@ ag-grid-angular{
     
     text-align: center;
    
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-family: Helvetica,Arial,sans-serif;
     }
