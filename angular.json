@@ -123,10 +123,10 @@
               ],
               "baseHref": "/RainbowOne/webapp/2.5/gamefile/edit/questionEditor/oneword/"
             },
-        "other": {
+        "ver26": {
           "optimization": true,
           "outputHashing": "all",
-          "outputPath": "dist/other",
+          "outputPath": "dist/ver26",
           "sourceMap": false,
           "extractCss": true,
           "namedChunks": false,
@@ -140,7 +140,7 @@
               "with": "src/environments/environment21.ts"
             }
           ],
-          "baseHref": "/RainbowOne/webapp/2.1/gamefile/edit/questionEditor/oneword/"
+          "baseHref": "/RainbowOne/webapp/2.6/gamefile/edit/questionEditor/oneword/"
         }
       }
     },
