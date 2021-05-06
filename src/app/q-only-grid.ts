@@ -7196,6 +7196,7 @@ onCellValueChanged(event) {
       if (this.modalError()) {
         return false;
       }
+      console.log('game name: '+this.gamename)
       let exportData = this.dataService.rowData2Array();
       let lowDevice = this.device.os.toLowerCase();
       if (lowDevice == 'mac'){
