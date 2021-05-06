@@ -19,7 +19,8 @@ export class DataService {
   constructor(private httpClient: HttpClient,public api: ApiService) {
     this.dataUrl = environment.dataUrl;
   }
-
+  public buy;
+  
   public dataId;
   public token;
 
@@ -102,6 +103,7 @@ export class DataService {
     sampleQuestion['b5'] = new Row({ question_no: "1", question: ""});
     sampleQuestion['en'] = new Row({ question_no: "1", question: ""});
     this.rowData[0] = sampleQuestion[this.api.lang];
+
     for (let i = 1; i <= 20; i++) {
       this.rowData[i - 1] = new Row({ question_no: i });
     }

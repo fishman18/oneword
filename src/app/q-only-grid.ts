@@ -10,6 +10,9 @@ import { ApiService } from './api.service';
 import { strictEqual } from 'assert';
 import { RoService } from './ro.service';
 import { SelectEditorComponent } from './selectEditor.component';
+import { Router, ActivatedRoute, NavigationEnd, NavigationStart} from '@angular/router';
+import { StorageService } from'./storage.service';
+import { environment } from '../environments/environment';
 
 type AOA = any[][];
 
@@ -71,6 +74,44 @@ export class QOnlyGrid {
   public wrong = 0;
   public check = 0;
   public text;
+  public gamelist =[
+    {id: "7", name: "小豬餐廳", name_en: "Pig Restaurant"},
+    {id: "8", name: "小豬餐廳", name_en: "Pig Restaurant"},
+    {id: "9", name: "小豬餐廳", name_en: "Pig Restaurant"},
+    {id: "10", name: "漩渦影無蹤(限時開放)", name_en: "Sea Swirl"},
+    {id: "11", name: "漩渦影無蹤(限時開放)", name_en: "Sea Swirl"},
+    {id: "12", name: "漩渦影無蹤(限時開放)", name_en: "Sea Swirl"},
+    {id: "13", name: "北極熊找朋友", name_en: "Polar Bear"},
+    {id: "14", name: "北極熊找朋友", name_en: "Polar Bear"},
+    {id: "15", name: "北極熊找朋友", name_en: "Polar Bear"},
+    {id: "16", name: "海洋探秘", name_en: "Aqua Trail"},
+    {id: "17", name: "海洋探秘", name_en: "Aqua Trail"},
+    {id: "18", name: "海洋探秘", name_en: "Aqua Trail"},
+    {id: "20", name: "時光隧道(限時開放)", name_en: "Time Tunnel"},
+    {id: "21", name: "時光隧道(限時開放)", name_en: "Time Tunnel"},
+    {id: "22", name: "時光隧道(限時開放)", name_en: "Time Tunnel"},
+    {id: "23", name: "字在雲中尋(限時開放)", name_en: "Word in Cloud"},
+    {id: "24", name: "字在雲中尋(限時開放)", name_en: "Word in Cloud"},
+    {id: "25", name: "字在雲中尋(限時開放)", name_en: "Word in Cloud"},
+    {id: "26", name: "詞語激流(限時開放)", name_en: "Vocab Waterfall"},
+    {id: "28", name: "字磚噴水池(限時開放)", name_en: "Word Fountain"},
+    {id: "29", name: "點蟲蟲", name_en: "Yummy Bugs"},
+    {id: "30", name: "點蟲蟲", name_en: "Yummy Bugs"},
+    {id: "31", name: "點蟲蟲", name_en: "Yummy Bugs"},
+    {id: "36", name: "釣魚求諺(限時開放)", name_en: "Fishing"},
+    {id: "39", name: "分柑同部(限時開放)", name_en: "Radical"},
+    {id: "41", name: "石魔浮橋(限時開放)", name_en: "Magical Bridge"},
+    {id: "42", name: "字形糖果屋(限時開放)", name_en: "character candy"},
+    {id: "43", name: "迷圖詠鴨(圖片)(限時開放)", name_en: "Ducky Quiz (image)"},
+    {id: "44", name: "迷圖詠鴨(文字)(限時開放)", name_en: "Ducky Quiz"},
+    {id: "45", name: "分柑同部(單字)(限時開放)", name_en: "Radical(only character)"},
+    {id: "59", name: "石魔浮橋(英文)(限時開放)", name_en: "Magical Bridge(eng)"},
+    {id: "68", name: "漩渦影無蹤(圖)(限時開放)", name_en: "Sea Swirl (image)"},
+    {id: "69", name: "漩渦影無蹤(圖)(限時開放)", name_en: "Sea Swirl (image)"},
+    {id: "70", name: "漩渦影無蹤(圖)(限時開放)", name_en: "Sea Swirl (image)"},
+  ];
+  public gamename: string;
+  public gamename_en: string;
   public deviceInfo = null;
   rowHeight =70;
   public isMobile: boolean = true;
@@ -6948,7 +6989,8 @@ onCellValueChanged(event) {
     this.gridApi.redrawRows({ rowNodes: [row] });
   }
 
-  constructor(public dataService: DataService, public device: DeviceDetectorService, protected modal: ModalService, protected common: CommonService, protected ngZone: NgZone,private ro: RoService,public api:ApiService) {
+  constructor(public dataService: DataService, public storage: StorageService, public device: DeviceDetectorService, public router: Router, protected modal: ModalService, protected common: CommonService, protected ngZone: NgZone,private ro: RoService,public api:ApiService) {
+    
     this.lang = api.lang || 'b5';
     this.rowData = dataService.rowData;
     this.deviceInfo = device.getDeviceInfo();
@@ -6956,6 +6998,16 @@ onCellValueChanged(event) {
     
 }
   ngOnInit() {   
+    this.api.getgame(['ROWebGame.get_game_name', this.api.dataId]).subscribe((data :any )=> {
+        console.log(data);
+        let gameid = data.game.key.split('/');
+        let find = this.gamelist.find(e=>e.id == gameid[1])
+        if(find){
+          this.gamename = find.name;
+          this.gamename_en = find.name_en;
+          console.log(this.gamename)
+        }
+     })
     setTimeout(() => {this.common.addLoading('grid');},100);
     setTimeout(() => {
       window.location.hash = '#ro/ready';
@@ -6990,6 +7042,7 @@ onCellValueChanged(event) {
       this.common.removeLoading('grid');
     });
   }
+
   onRowDragEnd($event) {
     let rows = this.rowData;
     let newId = $event.node.rowIndex;
@@ -6999,6 +7052,7 @@ onCellValueChanged(event) {
     this.updateIndex();
     this.gridApi.setRowData(rows);
   }
+
   onClickUpdate() {
     window.location.hash = '#ro/saving';
     this.common.addLoading('saving');
@@ -7146,8 +7200,8 @@ onCellValueChanged(event) {
       let lowDevice = this.device.os.toLowerCase();
       if (lowDevice == 'mac'){
         this.ro.request("exportXLSX", {
-            filename:"question_sheet.xlsx",
-            sheetName:"Question Sheet",
+            filename: this.gamename+'.xlsx',
+            sheetName: this.gamename,
             data: exportData
           }).then(()=>{
             this.redrawData();
@@ -7168,8 +7222,8 @@ onCellValueChanged(event) {
   
         const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(exportData);
         const wb: XLSX.WorkBook = XLSX.utils.book_new(); `Please`
-        XLSX.utils.book_append_sheet(wb, ws, 'Question Sheet');
-        XLSX.writeFile(wb, 'question_sheet.xlsx');
+        XLSX.utils.book_append_sheet(wb, ws, this.gamename);
+        XLSX.writeFile(wb, this.gamename+'.xlsx');
         this.redrawData();
       }
     }, 100);

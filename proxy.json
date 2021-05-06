@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "http://api.openknowledge.hk",
+    "secure": true,
+    "pathRewrite": {
+    "^/posts": ""
+  },
+    "changeOrigin": true
+  }
+}

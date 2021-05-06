@@ -57,7 +57,7 @@ export class Row {
   }
 
   changecolor(params)
-{  console.log(params)
+{  
      let wrong = 0;
      let check = 0;
   let db_array =     {
@@ -6589,23 +6589,22 @@ export class Row {
 
         for(let comma in blank)
         {
-            console.log('1'+blank[comma])
+            
             if(blank[comma] =="" )
             {  
                 check +=1;
-                console.log('1'+blank[comma])
+                
             }
             if(blank[comma].length>1)
             {
                 return 'wrong'
-                console.log('2'+blank[comma])
+                
             }
         
         }
 
         if(check >0 && params.data.answer1  !='')
-        {   console.log(check)
-            console.log(blank.length)
+        {   
                 check=0;
                 return 'wrong'
         }

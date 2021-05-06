@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Md5 } from 'ts-md5/dist/md5';
-
+import { StorageService } from './storage.service';
 @Injectable()
 
 export class ApiService {
@@ -12,9 +12,39 @@ export class ApiService {
   public token: string;
   public readonly: string;
   public isDebug: string;
-  
-  constructor(private http: HttpClient) {
-    this.url = environment.dataUrl;
+  public name;
+  constructor(private storage: StorageService, private http: HttpClient) {
+    this.url = environment.apiUrl;
+  }
+
+  getgame(params: any) {
+    let api = params[0].indexOf('.') > -1 ? params[0] : 'ROBookshelf.' + params[0];
+    let url = this.url + '?api=' + api + '&json=[';
+    for (let i = 1; i < params.length; i++){
+      if (typeof params[i] == 'string') {
+        try{
+          url = url + '"' + decodeURI(params[i]) + '",';
+        } catch (e){
+          url = url + '"' + params[i] + '",';
+        }
+      } else if (typeof params[i] == 'number') {
+        url = url + params[i] + ',';
+      } else if (typeof params[i] == 'boolean') {
+        url = url + (params[i] ? 'true,' : 'false,');
+      } else {
+        url = url + JSON.stringify(params[i]) + ',';
+      }
+    };
+    if (url.substr(-1) == ',')
+      url = url.substr(0, url.length - 1);
+    url = url + ']';
+    //Set Token
+    let headers:HttpHeaders = new HttpHeaders();
+    if (this.storage.jwt) {
+      headers = headers.append("Authorization", 'Bearer ' + this.storage.jwt);
+    }
+    let ob = this.http.get(url,{headers:headers});
+    return ob;
   }
 
   get(params: any) {

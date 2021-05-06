@@ -6,7 +6,11 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class StorageService {
   public dev: any = {};
   public isMobile: boolean = false;
-
+  public jwt;
+  public id;
+  public token;
+  public time;
+  public jwtObj;
   constructor(private device: DeviceDetectorService) {
     this.dev = device.getDeviceInfo();
     this.isMobile = device.isMobile() || device.isTablet();
