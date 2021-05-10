@@ -20,6 +20,7 @@ type AOA = any[][];
   selector: 'q-only-grid',
   template: `
   <div class="top-shadow {{deviceInfo.device}}"></div>
+  <div [ngStyle]="style">
   <ag-grid-angular
     class="ag-theme-fresh"
     [stopEditingWhenGridLosesFocus]="false"
@@ -46,14 +47,21 @@ type AOA = any[][];
     (gridReady)="onGridReady($event)"
     (cellValueChanged)="onCellValueChanged($event)"
     ></ag-grid-angular>
+    </div>
     <div class = red>
     {{text}}<br>
-    
     </div>
-    <div [ngClass]="['file-panel', (isMobile?'mobile':'')]">
-    <div class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
-    <input type="file" #fileInput (click)="fileInput.value = null" (change)="pcImport($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" value="import"/>
-    <div class="button" (click)="onExport()">{{lang=='b5'?'匯出Excel':'Export Excel'}}</div>
+    <div *ngIf="storage.buy == 0" class="showtext">
+        <span class="showtext1">{{lang=='b5'?'你必須訂購星願小王子遊戲才能輸入更多題目，以及使用匯入及匯出題目功能。了解更多':'You must subscribe Starwish game add-on to enter more questions, and to use import and export question function. Learn more'}}</span>
+    </div>
+    <div *ngIf="storage.buy != 0">
+        <div [ngClass]="['file-panel', (isMobile?'mobile':'')]">
+        <div class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
+        <input type="file" #fileInput (click)="fileInput.value = null" (change)="pcImport($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" value="import"/>
+        <div class="button" (click)="onExport()">{{lang=='b5'?'匯出Excel':'Export Excel'}}</div>
+        </div>
+    </div>
+
     `,
   styleUrls: ['./app.component.scss'],
   encapsulation: 2
@@ -70,6 +78,11 @@ export class QOnlyGrid {
     selectEditorComponent: SelectEditorComponent
   };
   public lang: string;
+  style = {
+    width: '100%',
+    height: '100%',
+    flex: '1 1 auto'
+};
   @ViewChild('fileInput', {static: false}) fileInput;
   public wrong = 0;
   public check = 0;
@@ -113,7 +126,6 @@ export class QOnlyGrid {
   public gamename: string;
   public gamename_en: string;
   public deviceInfo = null;
-  rowHeight =70;
   public isMobile: boolean = true;
   public db_array =    {
     "手":[
@@ -6989,13 +7001,19 @@ onCellValueChanged(event) {
     this.gridApi.redrawRows({ rowNodes: [row] });
   }
 
-  constructor(public dataService: DataService, public storage: StorageService, public device: DeviceDetectorService, public router: Router, protected modal: ModalService, protected common: CommonService, protected ngZone: NgZone,private ro: RoService,public api:ApiService) {
-    
+constructor(public dataService: DataService, public storage: StorageService, public device: DeviceDetectorService, public router: Router, protected modal: ModalService, protected common: CommonService, protected ngZone: NgZone,private ro: RoService,public api:ApiService) {
+    if(this.storage.buy ==0)
+    {
+        this.style = {
+        width: '100%',
+        height: '240px',
+        flex: '1 1 auto'
+    };
+}
     this.lang = api.lang || 'b5';
     this.rowData = dataService.rowData;
     this.deviceInfo = device.getDeviceInfo();
     this.isMobile = (device.isMobile() || device.isTablet()) && device.os.toLowerCase() != 'windows';
-    
 }
   ngOnInit() {   
     this.api.getgame(['ROWebGame.get_game_name', this.api.dataId]).subscribe((data :any )=> {
@@ -7039,6 +7057,7 @@ onCellValueChanged(event) {
     this.dataService.setData(() => {
       let rows = this.rowData;
       this.gridApi.setRowData(rows);
+      
       this.common.removeLoading('grid');
     });
   }

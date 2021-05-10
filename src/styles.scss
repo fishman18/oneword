@@ -70,12 +70,13 @@ ag-grid-angular{
   }
 
   .ag-row-drag{
+    display: inline-block;
     height: 30px;
     cursor: move;
     background-size: 30px 30px;
     width: 22px;
     margin-left: -15px;
-    margin-top: -5px;
+    margin-top: -8px;
     background-position: center center;
     //background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAQAAACQ9RH5AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFASURBVFjD7dbRatwwEIXhTyN7oYH2QXpV6Ps/QkMfIc+QlkDXltSLepc2BNa4mDhBczuGX2d0dDypeZ2KV+J2cAd3cAd3cAcfEDys+6z53uo/5/2SEvj27If+NR1ccQd38PsDp1t7dRWYjKomo0jCZLx2t9TNAEmYVVU1K6gGVLPByrTYohimFxDNbNyMXaG4SULyw2kZbBXOPoqluyO4KR5aKMsdZ9Xn1NDcb8zqFWCS7NGgGjEJs6ws3Z0UXwSEO1XGKPy8dncbdSjOPphVk18IoxlnJ3mz5uMuAlV2wiCMi7nCgJOs7unqywGe/jJXvXa3jnqVuZrik8tz+qO0LH7fWjeTq0mK/EKAFPk/AuTYkZmcjap5UTwIk2z3yBw0wdXVSSzO3nnUfa/u4A4+NHjlO35Hiju4gzu4g98e+Dfy6XGjP6R+GgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNS0wM1QyMjoxNToxMi0wNDowMHDjQBgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDUtMDNUMjI6MTU6MTItMDQ6MDABvvikAAAAEXRFWHRqcGVnOmNvbG9yc3BhY2UAMbV8BCUAAAAYdEVYdGpwZWc6c2FtcGxpbmctZmFjdG9yADF4MRaug9sAAAAASUVORK5CYII=');
     background-image: url('assets/btn_six_point.png');

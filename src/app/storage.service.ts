@@ -11,6 +11,8 @@ export class StorageService {
   public token;
   public time;
   public jwtObj;
+  public buy;
+  public lang;
   constructor(private device: DeviceDetectorService) {
     this.dev = device.getDeviceInfo();
     this.isMobile = device.isMobile() || device.isTablet();

@@ -8,6 +8,7 @@ import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
 import { getUrlVars } from './getUrlVars.function';
 import { StorageService } from './storage.service';
+
 type AOA = any[][];
 
 @Component({
@@ -28,7 +29,6 @@ export class AppComponent {
   public result =[];
   public radi  =[];
   public lang: string;
-  
   public value = '';
   public text;
   public text1;
@@ -36,8 +36,6 @@ export class AppComponent {
   public text3;
   public wrong = 0;
   public information = [];
-  
-
     constructor(public commonService: CommonService, public storage: StorageService, public api: ApiService, public modalService: ModalService, protected route: ActivatedRoute)
      {
     
@@ -60,21 +58,32 @@ export class AppComponent {
       url.push(hash[0]);
       url[hash[0]] = hash[1];
     }
-    console.log(jwtarr)
+    console.log(url)
     /*for(let i=0; i<url.length; i++)
     { 
       let w = url[i].split("=")
       url[i] = w;
       console.log(url)
     }*/
+    if (href.indexOf('/en/') > -1) {
+      this.storage.lang = 'en';
+      this.api.lang = 'en';
+    } else if (href.indexOf('/sc/') > -1){
+      this.storage.lang = 'sc';
+      this.api.lang = 'sc'
+    } else {
+      this.storage.lang = 'b5';
+      this.api.lang = 'b5'
+    }
     let jwt:string = jwtarr['lang=en%3Fjwt'] ;
     let id = url['id'];
     let time = url['time'];
     let token = url['token'];
+    this.storage.buy = 1;
     this.storage.id = id;
     this.storage.time = time;
     this.storage.token = token;
-    console.log('jwt'+jwt)
+    console.log('lang'+this.api.lang)
     if (jwt) {
         this.storage.jwt = jwt;
         let jwts:string[] = jwt.split('.');
@@ -94,7 +103,7 @@ export class AppComponent {
       
       loadParams() {
         let params = getUrlVars();
-        this.api.lang = params['lang'] == 'en' ? 'en' : 'b5';
+        
         this.api.dataId = params['id'] || environment.defaultDataId;
         this.api.token = params['token'] || environment.defaultToken;
         this.api.readonly = params['readonly'] || 'false';

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Row } from './row.class';
 import { DebugHelper } from 'protractor/built/debugger';
-
+import { StorageService } from './storage.service';
 import { ApiService } from './api.service';
 
 type AOA = any[][];
@@ -16,7 +16,7 @@ export class DataService {
   rowData: Row[] = [];
   dataUrl: string;
 
-  constructor(private httpClient: HttpClient,public api: ApiService) {
+  constructor(private httpClient: HttpClient,public api: ApiService, public storage: StorageService) {
     this.dataUrl = environment.dataUrl;
   }
   public buy;
@@ -31,21 +31,29 @@ export class DataService {
     return filterData;
   }
 
-  private messageSource = new BehaviorSubject('default message');
-  currentMessage = this.messageSource.asObservable();
 
 
-  changeMessage(message: string) {
-    this.messageSource.next(message)
-  }
+
+
 
   setData(callBack: any = null) {
     this.initData();
+    
     this.loadData().subscribe((res: any) => {
       if (res.body) {
-        if (res.body.data) {
+        if (res.body.data){
           res.body.data.forEach((row) => {
-            this.rowData[row.question_no - 1] = new Row(row);
+            if(this.storage.buy == 0){
+             
+              console.log(this.rowData)
+              if(this.rowData.length <2){
+               
+                this.rowData[row.question_no - 1] = new Row(row);
+              }
+            }else{
+              this.rowData[row.question_no - 1] = new Row(row);
+              console.log(this.rowData)
+            }
           });
         }        
       }
@@ -103,11 +111,16 @@ export class DataService {
     sampleQuestion['b5'] = new Row({ question_no: "1", question: ""});
     sampleQuestion['en'] = new Row({ question_no: "1", question: ""});
     this.rowData[0] = sampleQuestion[this.api.lang];
-
+    if(this.storage.buy == 0){
+     
+    for (let i = 1; i < 2; i++) {
+      this.rowData[i - 1] = new Row({ question_no: i });
+    }
+  }else{
     for (let i = 1; i <= 20; i++) {
       this.rowData[i - 1] = new Row({ question_no: i });
     }
-
+  }
   }
 
   public mergeData() {
