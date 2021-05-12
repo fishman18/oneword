@@ -36,7 +36,7 @@ export class AppComponent {
   public text3;
   public wrong = 0;
   public information = [];
-    constructor(public commonService: CommonService, public storage: StorageService, public api: ApiService, public modalService: ModalService, protected route: ActivatedRoute)
+    constructor(public dataService: DataService, public commonService: CommonService, public storage: StorageService, public api: ApiService, public modalService: ModalService, protected route: ActivatedRoute)
      {
     
         route.params.subscribe(param => {
@@ -75,11 +75,13 @@ export class AppComponent {
       this.storage.lang = 'b5';
       this.api.lang = 'b5'
     }
-    let jwt:string = jwtarr['lang=en%3Fjwt'] ;
+    
+    
+    let jwt:string = url['jwt'] ;
     let id = url['id'];
     let time = url['time'];
     let token = url['token'];
-    this.storage.buy = 1;
+    
     this.storage.id = id;
     this.storage.time = time;
     this.storage.token = token;
@@ -88,9 +90,9 @@ export class AppComponent {
         this.storage.jwt = jwt;
         let jwts:string[] = jwt.split('.');
         console.log(jwts)
-        if (jwts[0]) {
+        if (jwts[1]) {
             try {
-                this.storage.jwtObj = JSON.parse(atob(jwts[0]));
+                this.storage.jwtObj = JSON.parse(atob(jwts[1]));
                 console.log(this.storage.jwtObj);
             } catch (e) {}
         }
@@ -98,7 +100,11 @@ export class AppComponent {
       this.storage.jwt = environment.jwt;
       console.log(this.storage.jwt)
     }
+    this.commonService.addLoading('gameaddon');
+    console.log(this.storage.jwtObj.school_id)
+
           console.log(this.api.token)
+          
       }
       
       loadParams() {

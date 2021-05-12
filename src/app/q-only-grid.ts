@@ -7025,6 +7025,7 @@ constructor(public dataService: DataService, public storage: StorageService, pub
           this.gamename_en = find.name_en;
           console.log(this.gamename)
         }
+        this.common.clearAllLoading();
      })
     setTimeout(() => {this.common.addLoading('grid');},100);
     setTimeout(() => {
@@ -7054,12 +7055,25 @@ constructor(public dataService: DataService, public storage: StorageService, pub
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.api.getgame(['ROWebGame.get_buy_game', this.storage.jwtObj.school_id]).subscribe((data :any )=> {
+        console.log(data.game);
+        
+        if(data.game.addon_function == 'SWLP game')
+        {
+          this.storage.buy=1;
+        }
+        else{
+          this.storage.buy = 0;
+        }
+        this.common.removeLoading('gameaddon')
+      
     this.dataService.setData(() => {
       let rows = this.rowData;
       this.gridApi.setRowData(rows);
       
       this.common.removeLoading('grid');
     });
+    })
   }
 
   onRowDragEnd($event) {

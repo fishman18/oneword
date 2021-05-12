@@ -40,6 +40,8 @@ ag-grid-angular{
 .showtext{
   height: 100px;
   width: 100%;
+  position: absolute;
+  top: calc(50vh + 100px);
   text-align: center;
 }
 
@@ -47,7 +49,7 @@ ag-grid-angular{
   height: 100px;
   width: 100%;
   font-size: 14px;
-  color: #f0b153;
+  color: #985E28;
 }
 .red{
     color: red;
