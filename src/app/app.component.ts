@@ -43,7 +43,7 @@ export class AppComponent {
             this.module = param['module'];
           });
           this.loadParams();
-          let href = decodeURIComponent(window.location.href);
+    let href = decodeURIComponent(window.location.href);
     console.log(decodeURIComponent(href))
     let url = [], hash;
     let jwtarr =[];
