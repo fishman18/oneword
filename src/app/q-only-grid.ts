@@ -54,7 +54,7 @@ type AOA = any[][];
     <div *ngIf="storage.buy == 0" class="showtext">
         <span class="showtext1">{{lang=='b5'?'你必須訂購星願小王子遊戲才能輸入更多題目，以及使用匯入及匯出題目功能。了解更多':'You must subscribe Starwish game add-on to enter more questions, and to use import and export question function. Learn more'}}</span>
     </div>
-    <div *ngIf="storage.buy != 0">
+    <div *ngIf="storage.buy != 0 && common.loading ==[]">
         <div [ngClass]="['file-panel', (isMobile?'mobile':'')]">
         <div class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
         <input type="file" #fileInput (click)="fileInput.value = null" (change)="pcImport($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" value="import"/>
