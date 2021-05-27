@@ -43,17 +43,10 @@ export class DataService {
       if (res.body) {
         if (res.body.data){
           res.body.data.forEach((row) => {
-            if(this.storage.buy == 0){
-             
-              console.log(this.rowData)
-              if(this.rowData.length <2){
-               
-                this.rowData[row.question_no - 1] = new Row(row);
-              }
-            }else{
+            
               this.rowData[row.question_no - 1] = new Row(row);
               console.log(this.rowData)
-            }
+            
           });
         }        
       }
@@ -111,15 +104,10 @@ export class DataService {
     sampleQuestion['b5'] = new Row({ question_no: "1", question: ""});
     sampleQuestion['en'] = new Row({ question_no: "1", question: ""});
     this.rowData[0] = sampleQuestion[this.api.lang];
-    if(this.storage.buy == 0){
-     
-    for (let i = 1; i < 2; i++) {
-      this.rowData[i - 1] = new Row({ question_no: i });
-    }
-  }else{
+    
     for (let i = 1; i <= 20; i++) {
       this.rowData[i - 1] = new Row({ question_no: i });
-    }
+    
   }
   }
 
