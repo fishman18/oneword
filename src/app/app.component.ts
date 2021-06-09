@@ -71,7 +71,15 @@ export class AppComponent {
     } else if (href.indexOf('/sc/') > -1){
       this.storage.lang = 'sc';
       this.api.lang = 'sc'
-    } else {
+    } if(href.indexOf('/tc/')> -1){
+      this.storage.lang = 'b5';
+      this.api.lang = 'b5'
+    }
+  
+    if(url['lang'] =='en'){
+      this.storage.lang = 'en';
+      this.api.lang = 'en';
+    }else if(url['lang'] =='tc'){
       this.storage.lang = 'b5';
       this.api.lang = 'b5'
     }
