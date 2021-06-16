@@ -2,10 +2,10 @@ import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 import {ModalService} from './modal.service';
 import { ApiService } from './api.service';
-
+import { StorageService } from'./storage.service';
 @Component({
   selector: 'remove-button-cell',
-  template: `<div (click)="onClick()" class="trash {{(isBlank?'blank':'')}}"></div>`,
+  template: `<div  *ngIf=" storage.buy== 1"  (click)="onClick()" class="trash {{(isBlank?'blank':'')}}"></div>`,
   styles: [
     `    
       .trash {
@@ -31,7 +31,7 @@ export class RemoveButtonComponent implements ICellRendererAngularComp {
   private buttonText;
   private callbackText;
   public isBlank:boolean = false;
-  constructor(public modalService:ModalService,public api:ApiService){
+  constructor(public modalService:ModalService,  public storage: StorageService, public api:ApiService){
     this.message = api.lang=='b5'?'確定刪除題目?':'Are you sure to delete?';
     this.readonlyMessage = api.lang=='b5'?'文件為唯讀':'Are you sure to delete?';
   }
