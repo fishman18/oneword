@@ -51,17 +51,18 @@ type AOA = any[][];
     <div class = red>
     {{text}}<br>
     </div>
-    <div *ngIf="storage.buy == 0" class="showtext1" style="top:-43vh;">{{lang=='b5'?'你必須訂購星願小王子遊戲才能輸入更多題目，以及使用匯入及匯出題目功能。':'You must subscribe Starwish game add-on to enter more questions, and to use import and export question function.'}}<span>{{lang=='b5'?'了解更多':'Learn more'}}</span></div>
-        <div *ngIf="storage.buy == 0" class="showtext" style="top:262px; height:43vh;">
-        </div>
-    <div *ngIf="storage.buy != 0 && common.loading.length ==0" >
+    
+    <div *ngIf="common.loading.length ==0" >
         <div [ngClass]="['file-panel', (isMobile?'mobile':'')]">
-        <div class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
+        <div  *ngIf="storage.buy == 1"  class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
+    <div  *ngIf="storage.buy == 0"class="halfbutton" >{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
         <input type="file" #fileInput (click)="fileInput.value = null" (change)="pcImport($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" value="import"/>
         <div class="button" (click)="onExport()">{{lang=='b5'?'匯出Excel':'Export Excel'}}</div>
-        </div>
+        </div> 
     </div>
-
+    <div *ngIf="storage.buy == 0" class="showtext1" style="top:-43vh;">{{lang=='b5'?'你必須訂購星願小王子遊戲才能輸入更多題目，以及使用匯入及匯出題目功能。':'You must subscribe Starwish game add-on to enter more questions, and to use import and export question function.'}}<span>{{lang=='b5'?'了解更多':'Learn more'}}</span></div>
+        <div *ngIf="storage.buy == 0" class="showtext" style="top:262px; height:46vh;">
+        </div>
     `,
   styleUrls: ['./app.component.scss'],
   encapsulation: 2

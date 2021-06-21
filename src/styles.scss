@@ -173,6 +173,20 @@ ag-grid-angular{
   margin-left: 10px;
 }
 
+.halfbutton{
+  display: inline-block;
+  opacity:0.5;
+  filter:alpha(opacity=50);
+  user-select: none;
+  width: 130px;
+  background-image: linear-gradient(to bottom, #124d87, #124d87);
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  
+  margin-left: 10px;
+}
 
 .ag-body-viewport {
 height: 70vh;
