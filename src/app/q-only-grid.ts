@@ -55,7 +55,7 @@ type AOA = any[][];
     <div *ngIf="common.loading.length ==0" >
         <div [ngClass]="['file-panel', (isMobile?'mobile':'')]">
         <div  *ngIf="storage.buy == 1"  class="button" (click)="importClick()">{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
-    <div  *ngIf="storage.buy == 0"class="halfbutton" >{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
+        <div  *ngIf="storage.buy == 0"class="halfbutton" >{{lang=='b5'?'上傳Excel':'Import Excel'}}</div>
         <input type="file" #fileInput (click)="fileInput.value = null" (change)="pcImport($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" value="import"/>
         <div class="button" (click)="onExport()">{{lang=='b5'?'匯出Excel':'Export Excel'}}</div>
         </div> 
