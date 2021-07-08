@@ -123,10 +123,10 @@
               ],
               "baseHref": "/RainbowOne/webapp/2.5/gamefile/edit/questionEditor/oneword/"
             },
-        "t26": {
+        "t27": {
           "optimization": true,
           "outputHashing": "all",
-          "outputPath": "dist/t26",
+          "outputPath": "dist/t27",
           "sourceMap": false,
           "extractCss": true,
           "namedChunks": false,
@@ -140,7 +140,7 @@
               "with": "src/environments/environment1.ts"
             }
           ],
-          "baseHref": "/RainbowOne/webapp/2.6/gamefile/edit/questionEditor/oneword/"
+          "baseHref": "/RainbowOne/webapp/2.7/gamefile/edit/questionEditor/oneword/"
         },
         "v26": {
           "optimization": true,
@@ -160,6 +160,25 @@
             }
           ],
           "baseHref": "/RainbowOne/webapp/2.6/gamefile/edit/questionEditor/oneword/"
+        },
+        "v27": {
+          "optimization": true,
+          "outputHashing": "all",
+          "outputPath": "dist/v27",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "aot": true,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "fileReplacements": [
+            {
+              "replace": "src/environments/environment.ts",
+              "with": "src/environments/environment27.ts"
+            }
+          ],
+          "baseHref": "/RainbowOne/webapp/2.7/gamefile/edit/questionEditor/oneword/"
         }
       }
     },

@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   dataUrl: '//api.openknowledge.hk/RainbowOne/index.php/DataStorage/',
-  apiUrl: '//ro2.azurewebsites.net/RainbowOne/index.php/PHPGateway/proxy/2.7/',
+  apiUrl: '//api.openknowledge.hk/RainbowOne/index.php/PHPGateway/proxy/2.7/',
   defaultDataId: '8000',
   defaultToken: '5A2B425B',
   title: 'oneword - LOCAL',
